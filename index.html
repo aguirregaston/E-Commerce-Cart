@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css" />
+</head>
+<body>
+  <main>
+    <div class="logo">
+      <h1>Shopping Cart</h1>
+      <i class="iconoir-cart"></i>
+    </div>
+
+    <div id="products">
+      <div class="card-product">
+        <img src="https://http2.mlstatic.com/D_NQ_NP_641480-CBT76541440063_052024-O.webp" alt="Controlador De Juegos Inalámbrico Xbox Core Electric Volt Xb">
+        <div class="line"></div>
+        <p>Product 1 - $145.000</p>
+        <button onclick="addToCart('Product 1', 145000)">Add to Cart</button>
+      </div>
+      <div class="card-product">
+        <img src="https://http2.mlstatic.com/D_NQ_NP_637684-MLA32150735810_092019-O.webp" alt="Joystick inalámbrico Redragon Harrow G808 negro">
+        <div class="line"></div>
+        <p>Product 2 - $42.900</p>
+        <button onclick="addToCart('Product 2', 42900)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div id="cart">
+      <div class="box">
+        <i class="iconoir-check-circle-solid"></i> <h2>Cart</h2>
+      </div>
+      <ul id="cart-items"></ul>
+      <p>Total: $<span id="total">0</span></p>
+    </div>
+  </main>
+  <script>
+    const cart = []
+
+    function addToCart(name, price) {
+        const existingItem = cart.find(item => item.name === name)
+
+        if (existingItem) {
+            existingItem.quantity += 1
+        } else {
+            cart.push({ name, price, quantity: 1})
+        }
+
+        renderCart()
+    }
+
+    function removeFromCart(name) {
+        const itemIndex = cart.findIndex(item => item.name === name)
+        if (itemIndex > -1) {
+            cart.splice(itemIndex, 1)
+        }
+
+        renderCart()
+    }
+
+    function updateQuantity(name, quantity) {
+        const item = cart.find(item => item.name === name)
+        if (item) {
+            item.quantity = quantity
+            if (item.quantity <= 0) {
+                removeFromCart(name)
+            } else {
+                renderCart()
+            }
+        }
+    }
+
+    function renderCart() {
+        const cartItems = document.getElementById('cart-items')
+        const totalElement = document.getElementById('total')
+
+        cartItems.innerHTML = ''
+        let total = 0
+
+        cart.forEach(item => {
+            total += item.price * item.quantity
+
+            const li = document.createElement('li')
+            li.textContent = `${item.name} - $${item.price} x ${item.quantity}`
+            const removeButton = document.createElement('button')
+            removeButton.textContent = 'Remove'
+            removeButton.onclick = () => removeFromCart(item.name)
+            const quantityInput = document.createElement('input')
+            quantityInput.type = 'number'
+            quantityInput.value = item.quantity
+            quantityInput.min = 1
+            quantityInput.onchange = (e) => updateQuantity(item.name, parseInt(e.target.value))
+
+            li.appendChild(quantityInput)
+            li.appendChild(removeButton)
+            cartItems.appendChild(li)
+        })
+
+        totalElement.textContent = total.toFixed(2)
+    }
+  </script>
+</body>
+</html>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

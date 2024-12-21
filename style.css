@@ -1,0 +1,148 @@
+:root {
+  --bg-one: #0f0f14;
+  --bg-two: #0f0f10;
+  --active: #d2f400;
+  --white: #fff;
+  --gray: #3a3a4d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to top, var(--bg-one), var(--bg-two));
+  color: var(--white);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#products {
+  display: flex;
+  gap: 10px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  & h1 {
+    font-weight: 400;
+  }
+
+  & i {
+    font-size: 2rem;
+  }
+}
+
+.card-product {
+  max-width: fit-content;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  color: var(--gray);
+
+  & button {
+    padding: 10px;
+    border-radius: 900px;
+    border: 1px solid #1f1f29;
+    background: var(--gray);
+    color: var(--white);
+    cursor: pointer;
+  }
+
+  & button:hover {
+    background: #1f1f29;
+  }
+}
+
+.line {
+  width: 100%;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+img {
+  width: 10em;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  & i {
+    font-size: 1.5rem;
+    color: var(--active);
+  }
+}
+
+#cart {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  & h2 {
+    font-weight: 400;
+  }
+
+  & p {
+    font-size: 2rem;
+  }
+
+  & span {
+    font-weight: 800;
+  }
+}
+
+#cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  & li {
+    display: flex;
+    align-items: center;
+  }
+
+  & button {
+    height: 30px;
+    border: none;
+    outline: none;
+    padding: 0 15px;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    background: var(--gray);
+    color: var(--white);
+  }
+
+  & button:hover {
+    background: #1f1f29;
+  }
+}
+
+input {
+  width: fit-content;
+  height: 30px;
+  padding: 0 15px;
+  border-radius: 10px 0 0 10px;
+  outline: none;
+  border: none;
+  margin-left: 10px;
+}
